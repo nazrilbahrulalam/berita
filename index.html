@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Berita Gacor</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #d32f2f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        .news {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .news h2 {
+            margin: 0;
+        }
+
+        .date {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .admin {
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📰 Berita Gacor</h1>
+</header>
+
+<div class="container">
+
+    <div id="news-list"></div>
+
+    <div class="admin">
+        <h3>Tambah Berita</h3>
+        <input type="text" id="judul" placeholder="Judul berita">
+        <textarea id="isi" placeholder="Isi berita"></textarea>
+        <button onclick="tambahBerita()">Posting</button>
+    </div>
+
+</div>
+
+<script>
+    let berita = JSON.parse(localStorage.getItem("berita")) || [];
+
+    function tampilkanBerita() {
+        const list = document.getElementById("news-list");
+        list.innerHTML = "";
+
+        berita.reverse().forEach(item => {
+            list.innerHTML += `
+                <div class="news">
+                    <h2>${item.judul}</h2>
+                    <div class="date">${item.tanggal}</div>
+                    <p>${item.isi}</p>
+                </div>
+            `;
+        });
+    }
+
+    function tambahBerita() {
+        const judul = document.getElementById("judul").value;
+        const isi = document.getElementById("isi").value;
+
+        const data = {
+            judul,
+            isi,
+            tanggal: new Date().toLocaleString()
+        };
+
+        berita.push(data);
+        localStorage.setItem("berita", JSON.stringify(berita));
+
+        tampilkanBerita();
+    }
+
+    tampilkanBerita();
+</script>
+
+</body>
+</html>
