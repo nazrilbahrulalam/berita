@@ -1,125 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Berita Gacor</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #f4f4f4;
-        }
-
-        header {
-            background: #d32f2f;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            margin-top: 20px;
-        }
-
-        .news {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-        }
-
-        .news h2 {
-            margin: 0;
-        }
-
-        .date {
-            font-size: 12px;
-            color: gray;
-        }
-
-        .admin {
-            background: white;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 10px;
-        }
-
-        input, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-        }
-
-        button {
-            padding: 10px;
-            background: #d32f2f;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #b71c1c;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sekawan Gank Cyber Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#000;overflow:hidden;color:white;}
+.background{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.84),rgba(0,0,0,.92)),url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1500&q=80') center/cover;z-index:-5;filter:brightness(.55);}
+.overlay-text{position:absolute;inset:0;font-family:'Orbitron';font-size:8vw;font-weight:900;color:rgba(255,255,255,0.06);display:flex;justify-content:center;align-items:center;text-align:center;line-height:0.8;z-index:-4;}
+.scan{position:fixed;inset:0;background:repeating-linear-gradient(to bottom, rgba(0,255,255,.04) 0px, rgba(0,255,255,.04) 2px, transparent 2px, transparent 7px);animation:scanMove 9s linear infinite;z-index:-3;}
+@keyframes scanMove{0%{transform:translateY(0);}100%{transform:translateY(40px);}}
+.wave{position:fixed;inset:0;background:radial-gradient(circle at left, rgba(0,255,255,.12), transparent 35%),radial-gradient(circle at right, rgba(255,0,255,.18), transparent 35%);z-index:-2;animation:pulse 4s ease-in-out infinite alternate;}
+@keyframes pulse{from{opacity:.5;}to{opacity:1;}}
+.mini-logo{position:absolute;top:20px;left:25px;font-family:'Orbitron';font-size:42px;font-weight:900;padding:8px 20px;border:3px solid #fff;transform:skewX(-12deg);background:linear-gradient(90deg,#111,#d000ff);box-shadow:0 0 20px #d000ff;}
+.time-box{position:absolute;top:25px;right:30px;font-family:'Orbitron';color:cyan;text-align:right;}
+#clock{font-size:26px;text-shadow:0 0 10px cyan;} #date{font-size:12px;letter-spacing:2px;}
+.dashboard{width:100%;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;}
+.sub{color:#7efcff;font-size:18px;letter-spacing:10px;margin-bottom:20px;text-shadow:0 0 10px cyan;animation:flicker 2s infinite;} @keyframes flicker{0%,100%{opacity:1;}50%{opacity:.5;}}
+.main-box{position:relative;padding:25px 60px;border:5px solid #d000ff;background:rgba(0,0,0,.55);box-shadow:0 0 25px #d000ff;transform:skewX(-8deg);margin-bottom:25px;}
+.main-box h1{font-family:'Orbitron';font-size:70px;font-weight:900;background:linear-gradient(to bottom,#fff,#cfcfcf,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 12px white;transform:skewX(8deg);} 
+.main-box h2{font-family:'Orbitron';font-size:58px;font-weight:900;background:linear-gradient(to bottom,#ff7bff,#c000ff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 15px #ff00ff;transform:skewX(8deg);} 
+.btn-enter{padding:15px 45px;font-size:18px;font-weight:700;font-family:'Orbitron';background:transparent;border:2px solid cyan;color:cyan;cursor:pointer;box-shadow:0 0 15px cyan;transition:.3s;letter-spacing:3px;margin-bottom:40px;} .btn-enter:hover{background:cyan;color:black;box-shadow:0 0 30px cyan;transform:scale(1.05);} 
+.menu-panel{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;} 
+.card{width:180px;padding:15px;border:1px solid rgba(255,0,255,.4);background:rgba(255,255,255,.03);backdrop-filter:blur(4px);box-shadow:0 0 12px rgba(255,0,255,.3);transition:.3s;cursor:pointer;} .card:hover{transform:translateY(-8px);box-shadow:0 0 18px cyan;border-color:cyan;} .card h3{font-family:'Orbitron';color:#ff8cff;margin-bottom:8px;font-size:16px;} .card p{font-size:12px;color:#ccc;}
+.footer{position:absolute;bottom:10px;font-size:11px;letter-spacing:3px;color:#666;}
+@media(max-width:768px){.main-box h1{font-size:38px;}.main-box h2{font-size:30px;}.card{width:140px;}}
+</style>
 </head>
 <body>
-
-<header>
-    <h1>📰 Berita Gacor</h1>
-</header>
-
-<div class="container">
-
-    <div id="news-list"></div>
-
-    <div class="admin">
-        <h3>Tambah Berita</h3>
-        <input type="text" id="judul" placeholder="Judul berita">
-        <textarea id="isi" placeholder="Isi berita"></textarea>
-        <button onclick="tambahBerita()">Posting</button>
-    </div>
-
+<div class="background"></div>
+<div class="overlay-text">友勝百福<br>SEKAWAN GANK</div>
+<div class="scan"></div>
+<div class="wave"></div>
+<div class="mini-logo">SG</div>
+<div class="time-box"><div id="clock"></div><div id="date"></div></div>
+<div class="dashboard">
+<div class="sub">WELCOME TO</div>
+<div class="main-box"><h1>SEKAWAN</h1><h2>GANK</h2></div>
+<button class="btn-enter" onclick="masukPanel()">ENTER SYSTEM</button>
+<div class="menu-panel">
+<div class="card"><h3>DATABASE</h3><p>Kelola data utama sistem</p></div>
+<div class="card"><h3>MEMBER</h3><p>Data anggota Sekawan Gank</p></div>
+<div class="card"><h3>REPORT</h3><p>Laporan aktivitas dashboard</p></div>
+<div class="card"><h3>SETTING</h3><p>Konfigurasi web cyber panel</p></div>
 </div>
-
+</div>
+<div class="footer">CYBER CONTROL PANEL • SEKAWAN GANK SYSTEM v1.0</div>
 <script>
-    let berita = JSON.parse(localStorage.getItem("berita")) || [];
-
-    function tampilkanBerita() {
-        const list = document.getElementById("news-list");
-        list.innerHTML = "";
-
-        berita.reverse().forEach(item => {
-            list.innerHTML += `
-                <div class="news">
-                    <h2>${item.judul}</h2>
-                    <div class="date">${item.tanggal}</div>
-                    <p>${item.isi}</p>
-                </div>
-            `;
-        });
-    }
-
-    function tambahBerita() {
-        const judul = document.getElementById("judul").value;
-        const isi = document.getElementById("isi").value;
-
-        const data = {
-            judul,
-            isi,
-            tanggal: new Date().toLocaleString()
-        };
-
-        berita.push(data);
-        localStorage.setItem("berita", JSON.stringify(berita));
-
-        tampilkanBerita();
-    }
-
-    tampilkanBerita();
+function updateClock(){const now=new Date();document.getElementById('clock').innerHTML=now.toLocaleTimeString('id-ID');document.getElementById('date').innerHTML=now.toLocaleDateString('id-ID');}
+setInterval(updateClock,1000);updateClock();
+function masukPanel(){alert('Selamat Datang Di Dashboard Sekawan Gank Bro 😈');}
 </script>
-
 </body>
 </html>
